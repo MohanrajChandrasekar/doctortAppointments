@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-12">
+        <p>Add Slots</p>
+    </div>
+</div>
+<form class="form-group" [formGroup]="slotForm">
+    <div class="row des">
+        <div class="col-3">
+            <mat-form-field color="accent" appearance="fill">
+                <mat-label>Select Date</mat-label>
+                <input matInput [matDatepicker]="picker1" formControlName="slotDate">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col-3">
+            <mat-form-field appearance="fill">
+                <mat-select name="Select session" placeholder="session" formControlName="slotSession">
+                    <mat-option *ngFor="let ss of sessions" [value]="ss.session">{{ss.session}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-3">
+                <material-timepicker (change)="onFirstTime($event)" color="primary" label="startTime" appearance="outline" [userTime]="startTime">
+                </material-timepicker>   
+        </div>
+        <div class="col-md-3">
+            <material-timepicker (change)="onEndTime($event)" matInput color="primary" label="emdTime" appearance="outline" [userTime]="endTime">
+            </material-timepicker>
+        </div>
+    </div>
+    <div class="row des">
+        <button (click)="save()">Save</button> &nbsp;
+        <button (clicl)="cancel()">Cancel</button>
+    </div>
+</form>

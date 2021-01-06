@@ -1,0 +1,86 @@
+<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12">
+            <p>Home</p>
+          </div>
+        </div>
+      <div class="row overallRow">
+        <div class="col-12 colBorder">
+        <nav mat-tab-nav-bar [backgroundColor]="background" class="navBar">
+            <a mat-tab-link [ngClass]="selectedindex == i ? 'backwhite': ''" *ngFor="let link of links; let i = index"
+            (click)="getIndex(i)"
+            [active]="activeLink == link">                
+                {{link}}               
+            </a>
+        </nav>
+        <div class="selectDiv" *ngIf="selectedindex === 0">
+          <div class="row mt-2 selectedRow">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <span class="headings font-weight-bold">PATIENT</span>
+            </div>
+            <div class="col-md-2">
+              <span class="headings font-weight-bold">CONTACT</span>
+            </div>
+            <div class="col-md-2">
+              <span class="headings font-weight-bold">APPOINTMENT</span>
+            </div>
+            <div class="col-md-2">
+              <span class="headings font-weight-bold">WAITED</span>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+
+          <div *ngFor="let dt of data">
+            <mat-card class="highlight-card" >
+                <div class="row">
+                  <div class="col-md-1 m-auto">
+                    <mat-icon class="vertIcon">more_vert</mat-icon>
+                    <mat-icon class="vertIcon">more_vert</mat-icon>  
+                  </div>
+                  <div class="col-md-3 m-auto">
+                    <div class="row">
+                    <div class="col-md-4 avathar">
+                      <mat-card class="avatharCard">
+                        <mat-icon>supervised_user_circle</mat-icon>
+                      </mat-card>
+                    </div>
+                    <div class="col-md-8 m-auto">
+                      <span>{{dt.patient}}</span><br>
+                      <span>Male, 20 yr</span>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2 m-auto">
+                    <span>{{dt.contact}}</span>
+                  </div>
+                  <div class="col-md-2 m-auto">
+                    <span>{{dt.appointment}}</span>
+                  </div>
+                  <div class="col-md-2 m-auto">
+                    <span>{{dt.waited}}</span>
+                  </div>
+                  <div class="col-md-2 m-auto">
+                    <div class="row">
+                      <div class="col-md-8 m-auto pl-0 pr-0">
+                        <mat-card class="vitalsCard text-center">
+                          <span class="vitalTxt">Vitals</span>
+                        </mat-card>
+                      </div>
+                      <div class="col-md-4 m-auto">
+                        <mat-icon>more_horiz</mat-icon>
+                      </div>
+                    </div>
+                  </div> 
+                </div>              
+              </mat-card>
+          </div>
+          
+        </div>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>

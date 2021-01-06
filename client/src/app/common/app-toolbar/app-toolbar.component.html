@@ -1,0 +1,24 @@
+<mat-toolbar style="background-color: darkblue;">
+    
+    <button mat-button [matMenuTriggerFor]="user" style="background-color: azure; color: black;"> 
+      <span>
+        <!-- <img src="" height="50px" width="50px"> -->
+      </span> {{ physician.name }} {{ physician.designation }} &nbsp; <span>
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </span>
+      <!-- <br> -->
+      <span> {{ physician.employment }} </span>
+    </button>
+    <mat-menu #user="matMenu">
+      <button mat-menu-item>Logout </button>
+    </mat-menu>
+
+    <button mat-button style="background-color: azure; color:blue;">
+        <span>
+            <mat-icon></mat-icon> &nbsp; Today 
+        </span>
+    </button>
+
+    <button mat-button (click)="showAppointments()">Appointment</button>
+    <button mat-button>Walk-in</button>
+</mat-toolbar>
