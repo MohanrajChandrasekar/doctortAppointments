@@ -20,12 +20,7 @@
             <mat-card>
                 <mat-card-title>Morning</mat-card-title>
                 <mat-card-content>
-                    <button mat-raised-button class="btn">10.10 AM</button>
-                    <button mat-raised-button class="btn">10.10 AM</button>
-                    <button mat-raised-button class="btn">10.10 AM</button>
-                    <button mat-raised-button class="btn">10.10 AM</button>
-                    <button mat-raised-button class="btn">10.10 AM</button>
-                    <button mat-raised-button class="btn">10.10 AM</button>
+                    <button *ngFor="let am of morning" mat-raised-button class="btn">{{ am.startTime.datetime | date: 'h:mm a' }}</button>
                 </mat-card-content>
             </mat-card>
         </div>        
@@ -37,7 +32,9 @@
         <div class="row">
             <mat-card>
                 <mat-card-title>Evening</mat-card-title>
-                <mat-card-content></mat-card-content>
+                <mat-card-content>
+                    <button *ngFor="let pm of evening" mat-raised-button class="btn">1{{ pm.startTime.datetime | date: 'h:mm a' }}</button>
+                </mat-card-content>
             </mat-card>
         </div>
         

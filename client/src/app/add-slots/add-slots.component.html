@@ -21,16 +21,19 @@
             </mat-form-field>
         </div>
         <div class="col-md-3">
-                <material-timepicker (change)="onFirstTime($event)" color="primary" label="startTime" appearance="outline" [userTime]="startTime">
-                </material-timepicker>   
+            <material-timepicker (change)="onFirstTime($event)" color="primary" label="startTime" appearance="outline"
+                [userTime]="startTime">
+            </material-timepicker>
         </div>
         <div class="col-md-3">
-            <material-timepicker (change)="onEndTime($event)" matInput color="primary" label="emdTime" appearance="outline" [userTime]="endTime">
-            </material-timepicker>
+            <mat-form-field class="example-form-field">
+                <mat-label>End Time</mat-label>
+                <input matInput type="text" formControlName="endT">
+            </mat-form-field>
         </div>
     </div>
     <div class="row des">
         <button (click)="save()">Save</button> &nbsp;
-        <button (clicl)="cancel()">Cancel</button>
+        <button (click)="cancel()">Cancel</button>
     </div>
 </form>

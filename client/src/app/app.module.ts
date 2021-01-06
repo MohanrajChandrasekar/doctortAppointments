@@ -8,9 +8,9 @@ import { HomeComponent } from './home/home.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialTimePickerModule } from '@candidosales/material-time-picker';
+import {ToastrModule} from 'ngx-toastr';
 
 import {
   MatToolbarModule, MatInputModule, MatNativeDateModule,
@@ -18,9 +18,9 @@ import {
   MatMenuModule,
   MatTabsModule,
   MatCardModule,
-  MatSelectModule } from '@angular/material';
+  MatSelectModule, MatSnackBar, MatSnackBarModule
+} from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
-// import { MatTimepickerModule } from 'mat-timepicker';
 import { AppToolbarComponent } from './common/app-toolbar/app-toolbar.component';
 import { AddSlotsComponent } from './add-slots/add-slots.component';
 
@@ -46,13 +46,13 @@ import { AddSlotsComponent } from './add-slots/add-slots.component';
     MatTabsModule,
     MatCardModule,
     MatSelectModule,
-    // MatTimepickerModule,
     MatInputModule,
     MatNativeDateModule,
     MatFormFieldModule,
     MatDatepickerModule,
     MaterialTimePickerModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -6,35 +6,38 @@ const addNewSlots = async (req, res) => {
         let replacements = req.body;
         let slotdate = new Date(replacements.slotDate);
         replacements.slotDate = new Date(slotdate.setHours(0, 0, 0, 0));
-        const startDateTime = new Date(slotdate.getFullYear(), slotdate.getMonth() + 1, slotdate.getDate(), replacements.startTime.hour, replacements.startTime.minute, 0);
-        const endDateTime = new Date(slotdate.getFullYear(), slotdate.getMonth() + 1, slotdate.getDate(), replacements.endTime.hour, replacements.endTime.minute, 0);
+        const inStartTime = new Date(slotdate.getFullYear(), slotdate.getMonth(), slotdate.getDate(), replacements.startTime.hour, replacements.startTime.minute, 0);
+        const inEndTime = new Date(slotdate.getFullYear(), slotdate.getMonth(), slotdate.getDate(), replacements.endTime.hour, replacements.endTime.minute, 0);
         replacements.slots = [{
             startTime: {
                 hh: replacements.startTime.hour,
                 mm: replacements.startTime.minute,
-                datetime: startDateTime
+                datetime: inStartTime
             },
             endTime: {
                 hh: replacements.endTime.hour,
                 mm: replacements.endTime.minute,
-                datetime: endDateTime
+                datetime: inEndTime
             }
         }];
 
-        console.log(replacements);
-
-        const isExist = await slotModel.findOne({ slotDate: replacements.slotDate });
+        const isExist = await slotModel.findOne({ 'slotDate': replacements.slotDate, 'isActive': true });
         if (isExist) {
             if (isExist.slotSession === replacements.slotSession) {
-                const isSlotExist = isExist.slots.find(x => {
-                    return x.startTime.datetime <= startDateTime && x.endTime.datetime >= endDateTime;
+                console.log(isExist.slots[0]); 
+                const isSlotExist = isExist.slots.find( dt => { // inStartTime, inEndTime
+                    if ((inStartTime >= dt.startTime.datetme && inStartTime <= dt.endTime.datetime) ||
+                        (inEndTime >= dt.startTime.datetime && inEndTime <= dt.endTime.datetime)){
+                            return dt;
+                    }
                 });
+                console.log(isSlotExist);
                 if (isSlotExist) {
                     res.send({ status: 409, message: 'Already exist!'});
                 } else {
-                    const update = await slotModel.update({ slotDate: replacements.slotDate, slotSession: replacements.slotSession }, {
+                    const update = await slotModel.updateOne({ slotDate: replacements.slotDate, slotSession: replacements.slotSession }, {
                         $push: {
-                            slot: replacements.slots[0]
+                            slots: replacements.slots[0]
                         }
                     });
                     res.send({ status: 200, message: 'Saved Successfully!'});
